@@ -35,6 +35,9 @@
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
+        <!--  Bisa menggunakan @ConfigurationProperties("prefixName") Annotation  -->
+        <!--  Binding secara otomatis "key" yang ada di "application.properties" ke Java Bean property secara otomatis  -->
+        <!--  Bisa menggunakan @ConfigurationProperties Annotation  -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>

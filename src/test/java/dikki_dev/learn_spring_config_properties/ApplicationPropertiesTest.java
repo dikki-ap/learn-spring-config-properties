@@ -25,4 +25,11 @@ public class ApplicationPropertiesTest {
         int springApplicationVersion = Integer.parseInt(Objects.requireNonNull(environment.getProperty("spring.application.version")));
         Assertions.assertEquals(1, springApplicationVersion);
     }
+
+    @Test
+    void testGetEnvVariableDevice(){
+        // "Environment" tidak hanya mengecek "application.properties" tapi bisa juga mengambil Environment Variable yang ada di Device
+        String javaHome = environment.getProperty("JAVA_HOME");
+        Assertions.assertEquals("C:\\Program Files\\Java\\jdk-25", javaHome);
+    }
 }

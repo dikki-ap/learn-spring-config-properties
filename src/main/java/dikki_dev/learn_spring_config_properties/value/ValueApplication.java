@@ -22,4 +22,13 @@ public class ValueApplication {
         @Value("${spring.application.production-mode}")
         private boolean productionMode;
     }
+
+    @Component
+    @Getter
+    public static class SystemProperties{
+
+        // Sama seperti "Environment" Class, bisa juga untuk mengambil Environment Variable dari Device
+        @Value("${JAVA_HOME}")
+        private String javaHome;
+    }
 }

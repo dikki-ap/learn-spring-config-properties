@@ -6,11 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest(classes = ValueApplication.ValueApplicationProperties.class)
+@SpringBootTest(classes = ValueApplication.class)
 public class ValueTest {
 
     @Autowired
     private ValueApplication.ValueApplicationProperties valueApplicationProperties;
+
+    @Autowired
+    private ValueApplication.SystemProperties systemProperties;
 
     @Test
     void testValueApplicationProperties(){
@@ -18,4 +21,10 @@ public class ValueTest {
         Assertions.assertEquals(1, valueApplicationProperties.getVersion());
         Assertions.assertEquals(false, valueApplicationProperties.isProductionMode());
     }
+
+    @Test
+    void testValueSystemProperties(){
+        Assertions.assertEquals("C:\\Program Files\\Java\\jdk-25", systemProperties.getJavaHome());
+    }
+
 }

@@ -22,4 +22,12 @@ class PropertiesTest {
         Assertions.assertEquals("My Application Name", samplePropertiesApplication.getName());
         Assertions.assertEquals(33, samplePropertiesApplication.getVersion());
     }
+
+    @Test
+    void testDatabaseProperties(){
+        Assertions.assertEquals("admin", samplePropertiesApplication.getDatabaseProperties().getUsername());
+        Assertions.assertEquals("admin123", samplePropertiesApplication.getDatabaseProperties().getPassword());
+        Assertions.assertEquals("jdbc:example", samplePropertiesApplication.getDatabaseProperties().getUrl());
+        Assertions.assertEquals("mydb", samplePropertiesApplication.getDatabaseProperties().getDatabaseName());
+    }
 }

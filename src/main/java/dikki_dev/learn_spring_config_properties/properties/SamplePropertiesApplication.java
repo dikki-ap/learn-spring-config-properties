@@ -6,7 +6,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Getter
 @AllArgsConstructor
-@ConfigurationProperties("my-prefix-kebab-case") // Tambahkan "@ConfigurationProperties("prefixName")" sesuai dengan "application.properties" file
+// Tambahkan "@ConfigurationProperties("prefix-Name")" sesuai dengan "application.properties" file
+// "prefix" hanya bisa "kebab-case" atau "snake_case" untuk spring boot 3.x ++
+@ConfigurationProperties("my-prefix-kebab-case")
     /*
         - Gunakan "mvn compile" untuk generate METADATA file agar bisa melihat isinya
         - Filenya ada di "/target/classes/META-INF/spring-configuration-metadata.json"
@@ -15,19 +17,19 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
         {
           "groups": [
             {
-              "name": "myPrefix",
+              "name": "my-prefix-kebab-case",
               "type": "dikki_dev.learn_spring_config_properties.properties.PropertiesApplication$SamplePropertiesApplication",
               "sourceType": "dikki_dev.learn_spring_config_properties.properties.PropertiesApplication$SamplePropertiesApplication"
             }
           ],
           "properties": [
             {
-              "name": "myPrefix.name",
+              "name": "my-prefix-kebab-case.name",
               "type": "java.lang.String",
               "sourceType": "dikki_dev.learn_spring_config_properties.properties.PropertiesApplication$SamplePropertiesApplication"
             },
             {
-              "name": "myPrefix.version",
+              "name": "my-prefix-kebab-case.version",
               "type": "java.lang.Integer",
               "sourceType": "dikki_dev.learn_spring_config_properties.properties.PropertiesApplication$SamplePropertiesApplication"
             }
@@ -43,6 +45,20 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
         - Tidak perlu menggunakan "@Value("${key}")" satu persatu lagi
      */
 public class SamplePropertiesApplication {
+    // Wajib menggunakan Final dan Constructor tanpa Setter karena sudah "final"
     private final String name;
     private final Integer version;
+
+    // Tambahan untuk Inner Class terkait "Complex Configuration Properties"
+    private final DatabaseProperties databaseProperties;
+
+    // Tambahan untuk Inner Class terkait "Complex Configuration Properties"
+    @Getter
+    @AllArgsConstructor
+    public static class DatabaseProperties{
+        private final String username;
+        private final String password;
+        private final String url;
+        private final String databaseName; // Kalau "camelCase" seperti ini akan menjadi "kebab-case" di "mvn-compile" METADATA nya
+    }
 }

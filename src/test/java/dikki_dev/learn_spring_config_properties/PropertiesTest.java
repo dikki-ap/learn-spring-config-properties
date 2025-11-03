@@ -40,4 +40,17 @@ class PropertiesTest {
         Assertions.assertEquals(50, samplePropertiesApplication.getDatabaseProperties().getMaxTablesSize().get("customers"));
         Assertions.assertEquals(30, samplePropertiesApplication.getDatabaseProperties().getMaxTablesSize().get("categories"));
     }
+
+    @Test
+    void testEmbeddedCollectionProperties(){
+        Assertions.assertEquals("default", samplePropertiesApplication.getDefaultRoles().get(0).getId());
+        Assertions.assertEquals("Default Role", samplePropertiesApplication.getDefaultRoles().get(0).getName());
+        Assertions.assertEquals("guest", samplePropertiesApplication.getDefaultRoles().get(1).getId());
+        Assertions.assertEquals("Guest Role", samplePropertiesApplication.getDefaultRoles().get(1).getName());
+
+        Assertions.assertEquals("admin", samplePropertiesApplication.getRoles().get("admin").getId());
+        Assertions.assertEquals("Admin Role", samplePropertiesApplication.getRoles().get("admin").getName());
+        Assertions.assertEquals("finance", samplePropertiesApplication.getRoles().get("finance").getId());
+        Assertions.assertEquals("Finance Role", samplePropertiesApplication.getRoles().get("finance").getName());
+    }
 }

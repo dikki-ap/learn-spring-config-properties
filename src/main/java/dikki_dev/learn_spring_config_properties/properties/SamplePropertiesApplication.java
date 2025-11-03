@@ -55,6 +55,13 @@ public class SamplePropertiesApplication {
     // Tambahan untuk Inner Class terkait "Complex Configuration Properties"
     private final DatabaseProperties databaseProperties;
 
+    // 'Embedded-Collection' for "@ConfigurationProperties" Annotation
+    private final List<Role> defaultRoles;
+    private final Map<String, Role> roles;
+
+
+
+
     // Tambahan untuk Inner Class terkait "Complex Configuration Properties"
     @Getter
     @AllArgsConstructor
@@ -67,5 +74,14 @@ public class SamplePropertiesApplication {
         // Collection "@ConfigurationProperties" Annotation
         private final List<String> whiteListTables; // "whiteListTables" menjadi "white-list-tables"
         private final Map<String, Integer> maxTablesSize; // "maxTablesSize" menjadi "max-tables-size"
+    }
+
+
+    // 'Embedded-Collection' for "@ConfigurationProperties" Annotation
+    @Getter
+    @AllArgsConstructor
+    public static class Role{
+        private final String id;
+        private final String name;
     }
 }

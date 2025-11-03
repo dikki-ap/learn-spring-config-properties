@@ -9,6 +9,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.time.Duration;
 import java.util.Arrays;
 
 @ExtendWith(SpringExtension.class) // Mengganti @SpringBootTest khusus JUnit 5, karena @SpringBootTest akan menjalankan semua class yang ada annotation tersebut dan scan semua Bean yang diperlukan
@@ -52,5 +53,10 @@ class PropertiesTest {
         Assertions.assertEquals("Admin Role", samplePropertiesApplication.getRoles().get("admin").getName());
         Assertions.assertEquals("finance", samplePropertiesApplication.getRoles().get("finance").getId());
         Assertions.assertEquals("Finance Role", samplePropertiesApplication.getRoles().get("finance").getName());
+    }
+
+    @Test
+    void testDurationProperties(){
+        Assertions.assertEquals(Duration.ofSeconds(10), samplePropertiesApplication.getDefaultTimeout());
     }
 }

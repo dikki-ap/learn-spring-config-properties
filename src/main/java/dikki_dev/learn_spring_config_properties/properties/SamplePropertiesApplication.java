@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
@@ -59,8 +60,8 @@ public class SamplePropertiesApplication {
     private final List<Role> defaultRoles;
     private final Map<String, Role> roles;
 
-
-
+    // Conversion / Converter
+    private final Duration defaultTimeout;
 
     // Tambahan untuk Inner Class terkait "Complex Configuration Properties"
     @Getter

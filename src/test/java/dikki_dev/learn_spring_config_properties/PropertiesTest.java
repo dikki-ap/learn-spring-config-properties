@@ -1,19 +1,24 @@
 package dikki_dev.learn_spring_config_properties;
 
+import dikki_dev.learn_spring_config_properties.converter.StringToDateConverter;
 import dikki_dev.learn_spring_config_properties.properties.SamplePropertiesApplication;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Date;
 
 @ExtendWith(SpringExtension.class) // Mengganti @SpringBootTest khusus JUnit 5, karena @SpringBootTest akan menjalankan semua class yang ada annotation tersebut dan scan semua Bean yang diperlukan
 @EnableConfigurationProperties(SamplePropertiesApplication.class)
+@Import({StringToDateConverter.class}) // Wajib Import "Custom Converter"
 @TestPropertySource(locations = "classpath:application.properties")
 class PropertiesTest {
 
@@ -58,5 +63,13 @@ class PropertiesTest {
     @Test
     void testDurationProperties(){
         Assertions.assertEquals(Duration.ofSeconds(10), samplePropertiesApplication.getDefaultTimeout());
+    }
+
+    @Test
+    void testCustomConverter(){
+        Date expiredDate = samplePropertiesApplication.getExpiredDate();
+
+        var dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Assertions.assertEquals("2022-10-17", dateFormat.format(expiredDate));
     }
 }

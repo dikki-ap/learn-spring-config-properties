@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -62,6 +63,9 @@ public class SamplePropertiesApplication {
 
     // Conversion / Converter
     private final Duration defaultTimeout;
+
+    // Add "Custom Converter"
+    private final Date expiredDate;
 
     // Tambahan untuk Inner Class terkait "Complex Configuration Properties"
     @Getter

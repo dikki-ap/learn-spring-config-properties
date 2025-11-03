@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.util.List;
+import java.util.Map;
+
 @Getter
 @AllArgsConstructor
 // Tambahkan "@ConfigurationProperties("prefix-Name")" sesuai dengan "application.properties" file
@@ -60,5 +63,9 @@ public class SamplePropertiesApplication {
         private final String password;
         private final String url;
         private final String databaseName; // Kalau "camelCase" seperti ini akan menjadi "kebab-case" di "mvn-compile" METADATA nya
+
+        // Collection "@ConfigurationProperties" Annotation
+        private final List<String> whiteListTables; // "whiteListTables" menjadi "white-list-tables"
+        private final Map<String, Integer> maxTablesSize; // "maxTablesSize" menjadi "max-tables-size"
     }
 }
